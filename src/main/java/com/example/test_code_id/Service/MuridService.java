@@ -35,7 +35,7 @@ public class MuridService {
                 )
         );
 
-       Page<Murid> murids = muridRepository.findAll(build(murid),pageable);
+       Page<Murid> murids = muridRepository.findAll(pageable);
 
         return murids.stream().toList();
     }
@@ -57,38 +57,6 @@ public class MuridService {
         }
     }
 
-    public <T> Specification<T> build(Object object) {
-        return (root, query, criteriaBuilder) -> {
-            List<Predicate> predicates = new ArrayList<>();
-
-            if (object == null) {
-                return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
-            }
-
-            Class<?> clazz = object.getClass();
-            Field[] fields = clazz.getDeclaredFields();
-
-            for (Field field : fields) {
-                field.setAccessible(true);
-                try {
-                    Object value = field.get(object);
-
-                    if (value == null || (value instanceof String && ((String) value).isEmpty())) {
-                        continue;
-                    }
-
-                    if (value instanceof String) {
-                        predicates.add(criteriaBuilder.like(root.get(field.getName()), "%" + value + "%"));
-                    }else if (value instanceof Date) {
-                        predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get(field.getName()), (Date) value));
-                    } else {
-                        predicates.add(criteriaBuilder.equal(root.get(field.getName()), value));
-                    }
-                } catch (IllegalAccessException e){}
-            }
-            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
-        };
-    }
 
 
 }
