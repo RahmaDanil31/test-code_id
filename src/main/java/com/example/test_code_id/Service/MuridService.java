@@ -3,19 +3,15 @@ package com.example.test_code_id.Service;
 import com.example.test_code_id.Dto.MuridDto;
 import com.example.test_code_id.Model.Murid;
 import com.example.test_code_id.Repository.MuridRepository;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -26,18 +22,7 @@ public class MuridService {
 
     public List<Murid> get(MuridDto murid){
 
-        Pageable pageable = PageRequest.of(
-                murid.getPage(),
-                murid.getLimit(),
-                Sort.by(
-                        Sort.Direction.fromString(murid.getDirection()),
-                        murid.getSort()
-                )
-        );
-
-       Page<Murid> murids = muridRepository.findAll(pageable);
-
-        return murids.stream().toList();
+        return muridRepository.findAll();
     }
 
     public Murid save(Murid murid){
@@ -56,7 +41,6 @@ public class MuridService {
             muridRepository.deleteById(id);
         }
     }
-
 
 
 }
