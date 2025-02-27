@@ -28,7 +28,7 @@ public class PendidikanController {
         return new ResponseEntity<>(pendidikanService.save(pendidikan),HttpStatus.CREATED);
     }
 
-    @PostMapping()
+    @PostMapping("/update")
     public ResponseEntity<Pendidikan> update(Pendidikan pendidikan){
         return new ResponseEntity<>(pendidikanService.update(pendidikan),HttpStatus.OK);
     }
