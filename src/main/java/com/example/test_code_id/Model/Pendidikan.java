@@ -46,6 +46,10 @@ public class Pendidikan {
     }
 
     public Date getTime_create() {
+
+        if(time_create==null)
+            return new Date();
+
         return time_create;
     }
 
