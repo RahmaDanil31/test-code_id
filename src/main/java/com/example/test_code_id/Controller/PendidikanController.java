@@ -24,12 +24,12 @@ public class PendidikanController {
     }
 
     @PostMapping()
-    public ResponseEntity<Pendidikan> save(Pendidikan pendidikan){
+    public ResponseEntity<Pendidikan> save(@RequestBody Pendidikan pendidikan){
         return new ResponseEntity<>(pendidikanService.save(pendidikan),HttpStatus.CREATED);
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Pendidikan> update(Pendidikan pendidikan){
+    public ResponseEntity<Pendidikan> update(@RequestBody Pendidikan pendidikan){
         return new ResponseEntity<>(pendidikanService.update(pendidikan),HttpStatus.OK);
     }
 

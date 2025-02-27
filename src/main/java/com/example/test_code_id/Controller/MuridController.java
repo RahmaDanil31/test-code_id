@@ -23,12 +23,12 @@ public class MuridController {
     }
 
     @PostMapping()
-    public ResponseEntity<Murid> save(Murid murid){
+    public ResponseEntity<Murid> save(@RequestBody Murid murid){
         return new ResponseEntity<>(muridService.save(murid),HttpStatus.CREATED);
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Murid> update(Murid murid){
+    public ResponseEntity<Murid> update(@RequestBody Murid murid){
         return new ResponseEntity<>(muridService.update(murid),HttpStatus.OK);
     }
 
