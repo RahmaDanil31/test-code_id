@@ -1,5 +1,6 @@
 package com.example.test_code_id.Controller;
 
+import com.example.test_code_id.Dto.MuridDto;
 import com.example.test_code_id.Model.Murid;
 import com.example.test_code_id.Service.MuridService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class MuridController {
 
 
     @GetMapping()
-    public ResponseEntity<List<Murid>> get(){
-        return new ResponseEntity<>(muridService.get(), HttpStatus.OK);
+    public ResponseEntity<List<Murid>> get(MuridDto murid){
+        return new ResponseEntity<>(muridService.get(murid), HttpStatus.OK);
     }
 
     @PostMapping()
