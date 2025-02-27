@@ -1,0 +1,4 @@
+SELECT DISTINCT a.id as id, a.name as name, b.status as pendidikan_terakhir,
+a.time_create as create_time, b.time_create as time_updated
+FROM `murid` as a join `pendidikan` as b WHERE MAX (b.id) 
+a.id = b.id_murid;
